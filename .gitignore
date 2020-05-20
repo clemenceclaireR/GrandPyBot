@@ -1,0 +1,17 @@
+venv
+htmlcov
+.coverage
+.idea
+
+# Caches
+*.pyc
+__pycache__
+__pycache__/*.pyc
+app/__pycache__
+app/tests/__pycache__
+app/api/__pycache__
+app/parser/__pycache__
+
+map_api_key.txt
+
+

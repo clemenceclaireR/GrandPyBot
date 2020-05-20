@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- displaying for mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <!-- A Modifier ici -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>Ask (and listen to) GrandPy Bot</title>
+
+  <link rel="stylesheet" type="text/css" href="../../static/css/style.css" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+  <link rel="icon" type="image/png" href="" />
+
+  <!--<link rel="stylesheet" type="text/css" href="" />-->
+
+</head>
+
+
+<body>
+
+  <div class="container-fluid"> <!-- occupe toute la largeur de l'écran -->
+
+    <!-- /// HEADER : Logo, Title and Headline /// -->
+    <header class="row text-center">
+
+      <!-- Logo -->
+      <a href="/index">
+        <div id="logo" class="col-lg-offset-2 col-mg-offset-2 col-xs-4 col-sm-2"></div>
+      </a>
+
+      <!-- Title and Headline -->
+      <!-- bootstrap placement -->
+      <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8"> <!-- 6 column 8 lines, petit ecran, ecran reduit -->
+        <h1 id="title">
+          <span>GrandPy Bot</span>
+        </h1>
+        <h2 id="headline">Dis-moi ...</h2>
+      </div>
+
+    </header>
+
+    <!-- /// CHAT ZONE -->
+    <div id="content" class="row">
+
+
+      <!-- // Chat window and Input zone // -->
+      <section id="chatzone" class="col-sm-offset-1 col-sm-offset-2 col-lg-offset-2 col-sm-10 col-md-8 col-lg-8">
+
+        <!-- Chat window -->
+        <div id="chatwindow">
+          <div id ="chatstart" class="grandpybot">
+            <p>Que désires-tu savoir ?</p>
+          </div>
+        </div>
+
+        <!-- Form User Input -->
+        <div id="chatform">
+          <p>
+            <input id="user_query" class="col-sm-9 col-xs-8 col-md-8 col-lg-8"
+                   type="text" size = 48
+                   placeholder="Posez votre question à GrandPy" autofocus>
+            <input id="submit" class="col-xs-offset-1 col-sm-2 col-xs-3"
+                   type="button" value="Envoyer ">
+          </p>
+        </div>
+      </section>
+
+
+    </div>
+
+    <!-- /// FOOTER /// -->
+
+    <!-- Show but doesn't react on click + no hover-->
+    <footer class="row text-center">
+    <button data-toggle="modal" href="#infos" class="btn btn-primary">Informations</button>
+      <div class="modal fade" id="infos">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">x</button>
+              <h4 class="modal-title">Plus d'informations</h4>
+            </div>
+            <div class="modal-body">
+            Ce projet a été développé par Clémence Robin pour le parcours Développeur d'applications Python
+              d'Openclassrooms. [Ajouter repo github]
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-info" data-dismiss="modal">Fermer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </footer>
+
+
+    </div>
+
+  <!-------------SCRIPTS ---------------->
+
+  <!-- jQuery first, then Bootstrap JS -->
+
+  <!-- external load of jquery -->
+  <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
+
+  <!-- external load of bootstrap js -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!-- google api link -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ key }}"></script>
+  <!-- or BUT LOOKS OLD -->
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+
+  <!--local js files -->
+  <script type="text/javascript" src="../../static/js/display.js"></script>
+  <script type="text/javascript" src="../../static/js/ajax.js"></script>
+
+</body>
+
+</html>
