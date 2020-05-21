@@ -20,37 +20,26 @@ class TestMockGmap:
         """
         with requests_mock.Mocker() as mocker:
             oc_address = GoogleMapRequest("J'ai trouvé leur adresse")
-            result = '{"results" : [{"geometry": {"location": \
+            result = '{"results" : [{"formatted_address": "7 Cité Paradis, 75010 Paris, France","geometry": {"location": \
             {"lat": 48.875058, "lng": 2.350530}}}]}'
             mocker.get(oc_address.url, text=result)
-            assert oc_address.get_coordinates() == {'lat': 48.875058, 'lng': 2.350530}
-
-
-'''
-        Differing items:
-E         {'lng': 2.3504873} != {'lng': 2.35053}
-E         {'lat': 48.8748465} != {'lat': 48.87505}
-
-E         Differing items:
-E         {'lat': 48.8749731} != {'lat': 48.875065}
-E         {'lng': 2.3498414} != {'lng': 2.349852}
-
-'''
+            results = oc_address.extract_address_and_coordinates()
+            coords = results['results'][0]['geometry']['location']
+            address = results['results'][0]['formatted_address']
+            assert coords == {'lat': 48.875058, 'lng': 2.350530}
+            assert address == '7 Cité Paradis, 75010 Paris, France'
 
 
 class TestGMapsRequest:
     def setup(self):
         self.openclassrooms = GoogleMapRequest("openclassrooms paris")
-        self.citeparadis = GoogleMapRequest("cité paradis")
 
     def test_get_coord(self):
-        assert self.openclassrooms.get_coordinates() == {
-            'lat': 48.8748465,
-            'lng': 2.3504873
-        }
-        assert self.citeparadis.get_coordinates() == {
-            'lat': 48.8749731,
-            'lng': 2.3498414
-        }
+        results = self.openclassrooms.extract_address_and_coordinates()
+        coords = results['results'][0]['geometry']['location']
+        assert coords == {'lat': 48.8748465, 'lng': 2.3504873}
 
-
+    def test_get_address(self):
+        results = self.openclassrooms.extract_address_and_coordinates()
+        address = results['results'][0]['formatted_address']
+        assert address == '7 Cité Paradis, 75010 Paris, France'

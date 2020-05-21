@@ -37,9 +37,8 @@ class WikiRequest:
         parsed_wikidata = parsed_wikidata.split("\"", 1)[0]
         # clean tous les "\n et "" "
         print("parsed response >", parsed_wikidata)
-        # ajouter "En savoir + sur wikipedia" à la fin
+        # ajouter "En savoir + sur wikipedia" à la fin => dans JS peut-être
 
-        #
 
         # reconvertir en json
         wiki_data['query']['pages'][str(page_id)]['extract'] = parsed_wikidata

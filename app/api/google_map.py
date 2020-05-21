@@ -20,17 +20,14 @@ class GoogleMapRequest:
         self.question = ".".join(user_request.split())
         self.url = GoogleMapRequest.URL_BASE + self.question + "&key=" + GMAP_KEY
 
-    def get_coordinates(self):
+    def extract_address_and_coordinates(self):
         """
         Extracts coordinates (latitude, longitude) from
         the data returned by Google Maps API
         """
         api_data = self.get_data()
         try:
-            #useful_result['coord'] = api_data['results'][0]['geometry']['location']
-            #useful_result['address'] = api_data['result'][0]['formatted_address']
             return api_data
-            #return api_data['results'][0]['geometry']['location'], api_data['result'][0]['formatted_address']
         except IndexError:
             return ""
         except KeyError:

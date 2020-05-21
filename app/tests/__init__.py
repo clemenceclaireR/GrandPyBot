@@ -13,5 +13,5 @@ def test_empty():
     with requests_mock.Mocker() as m:
         empty = GMapsRequest("")
         m.get(empty.url, text="{}")
-        assert empty.get_coordinates() == ""
+        assert empty.extract_address_and_coordinates() == ""
 

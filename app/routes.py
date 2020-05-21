@@ -36,7 +36,7 @@ def ajax_request():
     print("Requête parsée =", cleaned_query)
 
     gmaps_request = GoogleMapRequest(cleaned_query)
-    results = gmaps_request.get_coordinates()
+    results = gmaps_request.extract_address_and_coordinates()
     print("Type de coords", results)
     coords = results['results'][0]['geometry']['location']
     print("Coordonnées GMaps =", results['results'][0]['geometry']['location'])
