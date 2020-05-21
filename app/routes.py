@@ -36,23 +36,27 @@ def ajax_request():
     print("Requête parsée =", cleaned_query)
 
     gmaps_request = GoogleMapRequest(cleaned_query)
-    coord = gmaps_request.get_coordinates()
-    print("Coordonnées GMaps =", coord)
+    results = gmaps_request.get_coordinates()
+    print("Type de coords", results)
+    coords = results['results'][0]['geometry']['location']
+    print("Coordonnées GMaps =", results['results'][0]['geometry']['location'])
+    address = results['results'][0]['formatted_address']
+    print('addresse formatée', address, 'coordonnés', coords)
 
-    if coord:
-        if coord == {'lat': 48.8748465, 'lng': 2.3504873} : #  coord OC
+    if coords:
+        if coords == {'lat': 48.8748465, 'lng': 2.3504873} : #  coords OC
             wiki_request = WikiRequest()
             extract = wiki_request.get_extract()
             if extract:
-                response = {'extract': extract, 'coord': coord}
+                response = {'extract': extract, 'coords': coords, 'address': address}
             else:
-                response = {'extract': "", 'coord': coord}
-            print(">", extract, coord)
+                response = {'extract': "", 'coords': coords, 'address': address}
+            print(">", extract, coords)
         else:
-            response = ""
+            response = {'extract': "", 'coords': coords, 'address': address}
         print("response >", response)
 
         return jsonify(response)
     else:
-        response = {'extract': "", 'coord': coord}
+        response = ""
         return jsonify(response)

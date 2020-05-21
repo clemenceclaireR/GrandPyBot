@@ -45,24 +45,21 @@ function ajaxPost(url, data, callback)
     req.send(data);
 }
 
-function getWrittenAddress(data)
-{
-    for (var i=0; i<data.results.length; i++) {
-        var address = data.results[i].formatted_address;
-    }
-}
 
 function responseTreatment(data)
 // Get AJAX response, remove gif loader and display answer
 {
     var data = JSON.parse(data);
-    console.log("Le serveur Python a renvoyé :", data); // FOR DEBUG
+    // debug
+    console.log("contenu de data :", data);
     removeLoader();
     if (data !== "") {
-        displayPybot("Voici ce que j'ai trouvé :" ) // mettre adresse formatée ici
-        initMap(data['coord']);
-        console.log(data['coord'])
-        console.log(data['extract']); // FOR DEBUG
+        displayPybot("Bien-sûr mon poussin ! La voici : " + data['address'] + "." )
+        initMap(data['coords']);
+        // debug
+        console.log(data['coords'])
+        console.log(data['extract']);
+        console.log(data['address']);
         if (data['extract'] !== "") {
             displayPybot(data['extract']);
         }

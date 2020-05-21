@@ -27,7 +27,10 @@ class GoogleMapRequest:
         """
         api_data = self.get_data()
         try:
-            return api_data['results'][0]['geometry']['location']
+            #useful_result['coord'] = api_data['results'][0]['geometry']['location']
+            #useful_result['address'] = api_data['result'][0]['formatted_address']
+            return api_data
+            #return api_data['results'][0]['geometry']['location'], api_data['result'][0]['formatted_address']
         except IndexError:
             return ""
         except KeyError:
@@ -38,9 +41,22 @@ class GoogleMapRequest:
         Get data from Google Map API and return it in a JSON format
         """
         gmaps_data = requests.get(self.url)
-        print(">>>", gmaps_data.json())  # FOR DEBUG
+        print("data >", gmaps_data.json())
         return gmaps_data.json()
 
+    def get_formatted_address(self):
+        """
+        Extract formatted address from the data
+        returned by Google Maps API
+        """
 
-if __name__ == "__main__":
-    pass
+        api_data = self.get_data()
+        try:
+            print(api_data['result'][0]['formatted_address'])
+            return api_data['result'][0]['geometry']['location']
+        except IndexError:
+            return ""
+        except KeyError:
+            return ""
+
+

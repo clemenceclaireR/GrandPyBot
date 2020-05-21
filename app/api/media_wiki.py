@@ -33,10 +33,14 @@ class WikiRequest:
         wiki_data_decoded = wiki_data['query']['pages'][str(page_id)]['extract'].decode()
         print("wiki data decoded>", wiki_data_decoded)
         # enlever  Situation et accès et ce qu'il y a avant
-        parsed_wikidata = wiki_data_decoded.split("accès", 1)[-1]
+        parsed_wikidata = wiki_data_decoded.split("accès\\n", 1)[-1]
+        parsed_wikidata = parsed_wikidata.split("\"", 1)[0]
         # clean tous les "\n et "" "
-        
         print("parsed response >", parsed_wikidata)
+        # ajouter "En savoir + sur wikipedia" à la fin
+
+        #
+
         # reconvertir en json
         wiki_data['query']['pages'][str(page_id)]['extract'] = parsed_wikidata
         print("back to json >", wiki_data)
