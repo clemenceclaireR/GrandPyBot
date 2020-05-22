@@ -46,14 +46,19 @@ def ajax_request():
     if coords:
         if coords == {'lat': 48.8748465, 'lng': 2.3504873} : #  coords OC
             wiki_request = WikiRequest()
-            extract = wiki_request.get_extract()
+            extract = wiki_request.get_extract_OC()
+            url = wiki_request.get_page_url()
             if extract:
-                response = {'extract': extract, 'coords': coords, 'address': address}
+                response = {'extract': extract, 'coords': coords, 'address': address, 'url': url}
             else:
-                response = {'extract': "", 'coords': coords, 'address': address}
+                response = {'extract': "", 'coords': coords, 'address': address, 'url': url}
             print(">", extract, coords)
         else:
-            response = {'extract': "", 'coords': coords, 'address': address}
+            wiki_request = WikiRequest(coords['lat'], coords['lng'])
+            extract = wiki_request.get_extract()
+            title = wiki_request.get_page_title()
+            url = wiki_request.get_page_full_url(title)
+            response = {'extract': extract, 'coords': coords, 'address': address, 'url': url}
         print("response >", response)
 
         return jsonify(response)

@@ -31,9 +31,15 @@ function displayPybot(speech)
 {
     var chatWindow = document.getElementById('chatwindow');
     var speechZone = document.createElement('div');
+    var testlink = document.createElement('a');
     speechZone.classList.add('grandpybot');
     speechZone.textContent = speech;
     chatWindow.appendChild(speechZone);
+    speechZone.appendChild(testlink);
+    testlink.classList.add('wikilink');
+    testlink.setAttribute('href','http://exemple.com');
+    testlink.href = 'http://exemple.com' ;
+    testlink.innerHTML = "[En savoir plus sur Wikipédia]";
 }
 
 function initMap(coord)
