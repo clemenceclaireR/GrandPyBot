@@ -22,5 +22,4 @@ class TestParser:
         Test the parser with the projects user request
         """
         assert self.parser.clean("Salut GrandPy ! Est-ce que tu connais l'adresse "
-                                 "d'OpenClassrooms ?") == "salut grandpy ! " \
-                                                          "est-ce connais l'adresse d'openclassrooms ?"
+                                 "d'OpenClassrooms ?") == "d'openclassrooms"

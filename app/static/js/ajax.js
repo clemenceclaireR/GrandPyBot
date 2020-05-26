@@ -61,13 +61,17 @@ function responseTreatment(data)
     var noExtractFound = ["Hmm, je connais cet endroit mais je ne me souviens plus de son histoire ... Mais je peux t'en raconter d'autres si tu veux !",
                             "Pas le temps pour les histoires, mes batteries sont à plat !",
                             "De mon temps, quand on ne connaissait pas quelque-chose, il fallait demander sur la place du village ! Je crois que ça s'appelle Quora maintenant, ou peut-être Reddit ..."]
+    var extractFound = ["Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? ",
+                        "Ah, ça y est, j'ai fini de télécharger mes souvenirs. ",
+                        "Laisse moi retrouver l'entrée dans ma base de donnée ... J'y suis. "]
+
     var data = JSON.parse(data);
 
     // debug
     console.log("contenu de data :", data);
     removeLoader();
     if (data !== "") {
-        displayPybot(getRandomAnswer(validAnswer) + data['address'] + "." )
+        displayPybot(getRandomAnswer(validAnswer) + data['address'] + ".", "")
         initMap(data['coords']);
         // debug
         console.log(data['coords'])
@@ -76,19 +80,10 @@ function responseTreatment(data)
         console.log(data['url']);
         //
         if (data['extract'] !== "") {
-            displayPybot(data['extract']);
-            var linkWiki = document.createElement('a');
-            linkWiki.classList.add('wikilink');
-            linkWiki.setAttribute('href',data['url']);
-            linkWiki.href = data['url'] ;
-            linkWiki.innerHTML = "[En savoir plus sur Wikipédia]";
-            $("grandpybot").append(linkWiki);
-            $("grandpybot").append('<p><a href=" + data[\'url\'] + "> [En savoir plus sur Wikipédia]</a> <br />)</p>');
-            displayPybot('<p><a href=" + data[\'url\'] + "> [En savoir plus sur Wikipédia]</a> <br />)</p>')
+            displayPybot((getRandomAnswer(extractFound) + data['extract']), data['url']);
 
-            displayPybot("<a href=" + data['url'] + "> [En savoir plus sur Wikipédia]</a> <br />" );
-            displayPybot(data['url']);
-            //$('#wikilink').html('<a href=" + data[\'url\'] + "> [En savoir plus sur Wikipédia]</a> <br />');
+            //displayPybot("<a href=" + data['url'] + "> [En savoir plus sur Wikipédia]</a> <br />" );
+
         } else {
             displayPybot(getRandomAnswer(noExtractFound))
         }
@@ -97,9 +92,3 @@ function responseTreatment(data)
     }
 }
 
-function changeLink() {
-     var link = document.getElementsByClassName('wikilink');
-     link.href(data['url']) ;
-     link.innerHTML("[En savoir plus sur Wikipédia]");
-     link.setAttribute(href, data['url']);
-}

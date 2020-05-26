@@ -27,7 +27,7 @@ function displayUser(speech)
     chatWindow.appendChild(speechZone);
 }
 
-function displayPybot(speech)
+function displayPybot(speech, url)
 {
     var chatWindow = document.getElementById('chatwindow');
     var speechZone = document.createElement('div');
@@ -37,10 +37,14 @@ function displayPybot(speech)
     chatWindow.appendChild(speechZone);
     speechZone.appendChild(testlink);
     testlink.classList.add('wikilink');
-    testlink.setAttribute('href','http://exemple.com');
-    testlink.href = 'http://exemple.com' ;
-    testlink.innerHTML = "[En savoir plus sur Wikipédia]";
+    testlink.setAttribute('href', url);
+    if (url == '') {
+        testlink.innerHTML = "";
+    } else {
+        testlink.innerHTML = " [En savoir plus sur Wikipédia]";
+    };
 }
+
 
 function initMap(coord)
 // Display the Google Map and marker corresponding to coordinates
