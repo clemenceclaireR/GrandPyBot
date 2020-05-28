@@ -1,3 +1,4 @@
+# test and env
 venv
 htmlcov
 .coverage
@@ -12,6 +13,10 @@ app/tests/__pycache__
 app/api/__pycache__
 app/parser/__pycache__
 
+# repo and key
 map_api_key.txt
+heroku_repo.txt
 
-
+# jquery
+jquery-3.5.1.js
+jquery-3.5.1.min.js

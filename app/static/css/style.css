@@ -12,10 +12,9 @@ header {
 }
 
 #logo {
-    /*background-attachment: fixed; /* Le fond restera fixe */
     background-position: center; /*accordingly to bootstrap grid*/
     background-image: url("../img/logo_bot.png");
-    background-repeat: no-repeat; /* Le fond ne sera pas répété */
+    background-repeat: no-repeat;
     height: 100px;
 }
 
@@ -133,6 +132,14 @@ footer {
   margin-right: auto;
   margin-left: auto;
 }
+
+/* test background
+.container-fluid {
+    background-color: #d3d3d3;
+}
+*/
+
+
 
 /* MEDIA QUERIES  */
 
