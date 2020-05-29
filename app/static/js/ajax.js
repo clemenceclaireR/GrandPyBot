@@ -88,7 +88,7 @@ function responseTreatment(data)
             displayPybot(getRandomAnswer(noExtractFound))
         }
     } else {
-        displayPybot(getRandomAnswer(notFoundAnswer))
+        displayPybot(getRandomAnswer(notFoundAnswer), "")
     }
 }
 
