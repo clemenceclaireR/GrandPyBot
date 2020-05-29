@@ -2,13 +2,11 @@
 # coding: utf-8
 
 
-from flask import render_template, request, jsonify
-
+from flask import render_template
 from app import app
 from app.forms import DialogForm
-from app.api.google_map import GMAP_KEY, GoogleMapRequest
-from app.api.media_wiki import WikiRequest
-from app.parser.parser import Parser
+from app.ajax_request import ajax_request
+from app.api.google_map import GMAP_KEY
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -22,44 +20,10 @@ def index():
 
 
 @app.route('/ajax', methods=['POST'])
-def ajax_request():
+def treat_request():
     """
     Store user request, call the parser on it and get coordinates from
     GoogleMaps. If coords corresponds to OC address, then call
     MediaWiki API to extract its description.
     """
-    user_query = request.data.decode('utf-8')
-    print("Requête =", user_query)
-
-    parser = Parser()
-    cleaned_query = parser.clean(user_query)
-    print("Requête parsée =", cleaned_query)
-
-    gmaps_request = GoogleMapRequest(cleaned_query)
-    results = gmaps_request.extract_address_and_coordinates()
-    print("Type de coords", results)
-    status = results['status']
-    print(status)
-    if status != 'ZERO_RESULTS':
-        coords = results['results'][0]['geometry']['location']
-        print("Coordonnées GMaps =", results['results'][0]['geometry']['location'])
-        address = results['results'][0]['formatted_address']
-        print('addresse formatée', address, 'coordonnés', coords)
-
-        if coords:
-            wiki_request = WikiRequest(coords['lat'], coords['lng'])
-            extract = wiki_request.get_extract()
-            title = wiki_request.get_page_title()
-            url = wiki_request.get_page_full_url(title)
-            response = {'extract': extract, 'coords': coords, 'address': address, 'url': url}
-            print("response >", response)
-
-            return jsonify(response)
-        else:
-            response = ""
-            return jsonify(response)
-
-    else:
-        response = ""
-        return jsonify(response)
-
+    return ajax_request()

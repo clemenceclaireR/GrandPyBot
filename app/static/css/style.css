@@ -139,6 +139,11 @@ footer {
 }
 */
 
+#crossed-out
+{
+    text-decoration: line-through;
+}
+
 
 
 /* MEDIA QUERIES  */

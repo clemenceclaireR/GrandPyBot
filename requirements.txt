@@ -2,3 +2,4 @@ wtforms
 requests
 flask-wtf
 requests-mock
+gunicorn
