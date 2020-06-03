@@ -153,10 +153,14 @@ footer {
 {
     /* Header zone */
     #logo {
-        background-attachment: fixed; /* Le fond restera fixe */
-        background-position: top right; /* Le fond sera placé en haut à droite */
+        background-position: center; /*accordingly to bootstrap grid*/
         background-image: url("../img/logo_bot.png");
-        background-repeat: no-repeat; /* Le fond ne sera pas répété */
+        background-repeat: no-repeat;
+        height: 100px;
+    }
+
+    #user_query {
+        padding-bottom: 1em;
     }
 
 /* all medias, large devices (lt 1200) */

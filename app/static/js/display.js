@@ -1,53 +1,35 @@
-function displayLoader()
-// Display gif loader (used during AJAX request)
-{
-    var chatWindow = document.getElementById('chatwindow')
-    var loaderZone = document.createElement('div');
-    loaderZone.setAttribute('id', 'ajax-loader');
-    var loader = document.createElement('img');
-    loader.setAttribute('src', '../static/img/ajax_loading_icon.gif');
-    loader.setAttribute('alt', "Ajax loader");
-    loaderZone.appendChild(loader);
-    chatWindow.appendChild(loaderZone);
-}
-
-function removeLoader()
-// Remove gif loader when AJAX request finished
-{
-    var loaderZone = document.getElementById('ajax-loader');
-    loaderZone.remove();
-}
-
-function displayUser(speech)
+function displayPybot(entry, url)
+// Display bot entries
 {
     var chatWindow = document.getElementById('chatwindow');
-    var speechZone = document.createElement('div');
-    speechZone.classList.add('user');
-    speechZone.textContent = speech;
-    chatWindow.appendChild(speechZone);
-}
-
-function displayPybot(speech, url)
-{
-    var chatWindow = document.getElementById('chatwindow');
-    var speechZone = document.createElement('div');
-    var testlink = document.createElement('a');
-    speechZone.classList.add('grandpybot');
-    speechZone.textContent = speech;
-    chatWindow.appendChild(speechZone);
-    speechZone.appendChild(testlink);
-    testlink.classList.add('wikilink');
-    testlink.setAttribute('href', url);
+    var textZone = document.createElement('div');
+    var wikiLink = document.createElement('a');
+    textZone.classList.add('grandpybot');
+    textZone.textContent = entry;
+    chatWindow.appendChild(textZone);
+    textZone.appendChild(wikiLink);
+    wikiLink.classList.add('wikilink');
+    wikiLink.setAttribute('href', url);
     if (url == '') {
-        testlink.innerHTML = "";
+        wikiLink.innerHTML = "";
     } else {
-        testlink.innerHTML = " [En savoir plus sur Wikipédia]";
+        wikiLink.innerHTML = " [En savoir plus sur Wikipédia]";
     };
+    chatWindow.scrollTop = chatWindow.scrollHeight - chatWindow.clientHeight;
 }
 
+function displayUser(entry)
+// Display user entries
+{
+    var chatWindow = document.getElementById('chatwindow');
+    var textZone = document.createElement('div');
+    textZone.classList.add('user');
+    textZone.textContent = entry;
+    chatWindow.appendChild(textZone);
+}
 
 function initMap(coord)
-// Display the Google Map and marker corresponding to coordinates
+// Display Google's map and its marker corresponding to coordinates
 {
     var chatWindow = document.getElementById('chatwindow');
     var mapZone = document.createElement('div');
@@ -62,4 +44,24 @@ function initMap(coord)
         position: coord,
         map: map
         });
+}
+
+function displayLoader()
+// Display gif loader when Ajax is treating a request
+{
+    var chatWindow = document.getElementById('chatwindow')
+    var loaderZone = document.createElement('div');
+    var loader = document.createElement('img');
+        loaderZone.setAttribute('id', 'ajax-loader');
+    loader.setAttribute('src', '../static/img/ajax_loading_icon.gif');
+    loader.setAttribute('alt', "Ajax loader");
+    loaderZone.appendChild(loader);
+    chatWindow.appendChild(loaderZone);
+}
+
+function removeLoader()
+// Remove gif loader when AJAX request is done
+{
+    var loaderZone = document.getElementById('ajax-loader');
+    loaderZone.remove();
 }
