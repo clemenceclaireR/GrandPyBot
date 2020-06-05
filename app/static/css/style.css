@@ -20,8 +20,12 @@ header {
 
 #headline {
     font-size: 1em;
-    font-family: arial;
-    font-weight: bold;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    /*font-weight: bold;*/
+    /*font-style: italic;*/
+    text-shadow: 2px 2px 2px #000000;
+    letter-spacing: 2px;
+    word-spacing: 2px;
 }
 
 #title {
@@ -29,6 +33,14 @@ header {
     font-family: arial;
     font-size: 2em;
     font-weight: bold;
+    font-family: Tahoma, Geneva, sans-serif;
+    letter-spacing: 6px;
+    word-spacing: 1.6px;
+    color: #1b1856;
+    font-weight: 700;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: small-caps;
 }
 
 /* Chat */
@@ -198,6 +210,7 @@ footer {
 
     #submit {
         font-size: 1.2em;
+        margin-top: 0.5em;
     }
 
     /* Footer zone */

@@ -95,7 +95,6 @@ class TestWikiRequest:
     """
     def setup(self):
         self.mt_st_michel = WikiRequest(48.636063, -1.511457)
-        self.title = "Le Mont-Saint-Michel"
 
     def test_get_extract(self):
         assert self.mt_st_michel.get_extract() == "Le Mont-Saint-Michel est une commune française située dans " \
@@ -117,5 +116,3 @@ class TestWikiRequest:
 
     def test_get_page_id(self):
         assert self.mt_st_michel.get_page_id() == 1187468
-
-

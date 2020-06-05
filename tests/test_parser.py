@@ -1,18 +1,7 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
-import requests_mock
 from app.parser.parser import Parser
-
-
-class TestMockParser:
-    def test_get_to_lowercase(self):
-        with requests_mock.Mocker() as mocker:
-            pass
-
-    def test_clean_stopwords(self):
-        with requests_mock.Mocker() as mocker:
-            pass
 
 
 class TestParser:
