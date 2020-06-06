@@ -2,10 +2,9 @@
 # coding: utf-8
 
 import requests
-import os
+from os import environ
 
-GMAP_KEY = os.environ.get('GMAPS_KEY', 'AIzaSyAcqisJEyTBEGTL_ExtFeYlbTWEcR7vDmA')
-
+GMAP_KEY = environ.get('GMAPS_API_KEY')
 
 class GoogleMapRequest:
     """
