@@ -5,6 +5,9 @@ from app.parser.parser import Parser
 
 
 class TestParser:
+    """
+    Test class which contains functions to check the parser returns
+    """
     def setup(self):
         self.parser = Parser()
 

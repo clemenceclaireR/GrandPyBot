@@ -1,10 +1,10 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
+from flask import request, jsonify
 from app.api.google_map import GoogleMapRequest
 from app.api.media_wiki import WikiRequest
 from app.parser.parser import Parser
-from flask import request, jsonify
 
 
 def ajax_request():

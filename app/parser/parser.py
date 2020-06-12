@@ -4,8 +4,6 @@
 
 import json
 
-# TODO : rajouter test input (parser)/output Pybot
-
 
 class Parser:
     """

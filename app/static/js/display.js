@@ -1,30 +1,39 @@
-function displayPybot(entry, url)
+function displayBotEntry(entry, url)
 // Display bot entries
 {
     var chatWindow = document.getElementById('chatwindow');
     var textZone = document.createElement('div');
+    var titleZone = document.createElement('div');
     var wikiLink = document.createElement('a');
+    titleZone.classList.add('grandpybot_title');
     textZone.classList.add('grandpybot');
+    titleZone.innerHTML = "Grandpy \n";
     textZone.textContent = entry;
+    chatWindow.appendChild(titleZone);
     chatWindow.appendChild(textZone);
     textZone.appendChild(wikiLink);
     wikiLink.classList.add('wikilink');
     wikiLink.setAttribute('href', url);
-    if (url == '') {
+    if (url === '') {
         wikiLink.innerHTML = "";
     } else {
         wikiLink.innerHTML = " [En savoir plus sur Wikipédia]";
-    };
+    }
+    // get scrollbar always on bottom
     chatWindow.scrollTop = chatWindow.scrollHeight - chatWindow.clientHeight;
 }
 
-function displayUser(entry)
+function displayUserEntry(entry)
 // Display user entries
 {
     var chatWindow = document.getElementById('chatwindow');
+    var titleZone = document.createElement('div');
     var textZone = document.createElement('div');
+    titleZone.classList.add('user_title');
     textZone.classList.add('user');
+    titleZone.innerHTML = "Moi \n";
     textZone.textContent = entry;
+    chatWindow.appendChild(titleZone);
     chatWindow.appendChild(textZone);
 }
 
@@ -46,7 +55,7 @@ function initMap(coord)
         });
 }
 
-function displayLoader()
+function displayGifLoader()
 // Display gif loader when Ajax is treating a request
 {
     var chatWindow = document.getElementById('chatwindow')
@@ -59,7 +68,7 @@ function displayLoader()
     chatWindow.appendChild(loaderZone);
 }
 
-function removeLoader()
+function removeGifLoader()
 // Remove gif loader when AJAX request is done
 {
     var loaderZone = document.getElementById('ajax-loader');

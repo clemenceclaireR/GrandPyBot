@@ -13,9 +13,11 @@ class WikiRequest:
                       "&prop=extracts&explaintext=true&exsectionformat=plain&exsentences=3&format=json"
     API_GEOLOC_LINK = "https://fr.wikipedia.org/w/api.php?action=query&prop=extracts&" \
                       "list=geosearch&gscoord={}|{}&gsradius=10000&gslimit=1&format=json"
+    PAGE_ID = ""
 
     def __init__(self, *args):
-        """Takes coordinates to build the url to request
+        """
+        Takes coordinates to build the url to request
         """
         try:
             self.latitude = args[0]
@@ -59,15 +61,15 @@ class WikiRequest:
         Builds the url to request with the page id
         Returns an extract of the Wikipedia page
         """
-        page_id = self.get_page_id()
-        url_extract = WikiRequest.API_PAGEID_LINK.format(page_id)
+        #page_id = self.get_page_id()
+        WikiRequest.PAGE_ID = self.get_page_id()
+        url_extract = WikiRequest.API_PAGEID_LINK.format(WikiRequest.PAGE_ID)
         wiki_data = requests.get(url_extract)
         wiki_data = wiki_data.json()
         print(wiki_data)
         try:
-            return wiki_data['query']['pages'][str(page_id)]['extract']
+            return wiki_data['query']['pages'][str(WikiRequest.PAGE_ID)]['extract']
         except IndexError:
             return ""
         except KeyError:
             return ""
-

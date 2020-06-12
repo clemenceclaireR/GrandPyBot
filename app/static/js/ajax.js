@@ -3,33 +3,33 @@ $('#submit').on('click', function()
 {
     var userQuery = document.getElementById('user_query').value;
     if (userQuery !== "") {
-        userValidated(userQuery);
+        userQueryTreatment(userQuery);
     }
 });
 
 $(document).on('keydown', function(event)
-// Handles user submission with 'RETURN' key
+// Handles user submission when "RETURN" is pressed
 {
     var userQuery = document.getElementById('user_query').value;
     var key = event.keyCode;
     if (key === 13 && userQuery !== "") {
-        userValidated(userQuery);
+        userQueryTreatment(userQuery);
     }
 });
 
-function userValidated(userQuery)
+function userQueryTreatment(userQuery)
 // Display user query in chat window, clear form and init ajax request
 {
-    displayUser(userQuery);
+    displayUserEntry(userQuery);
     var userZone = document.getElementById("user_query");
     userZone.value = "";
-    ajaxPost('/ajax', userQuery, responseTreatment);
+    ajaxPostRequest('/ajax', userQuery, botResponseTreatment);
 }
 
-function ajaxPost(url, data, callback)
+function ajaxPostRequest(url, data, callback)
 // Display gif loader, prepare and send ajax 'POST' request
 {
-    displayLoader();
+    displayGifLoader();
     var req = new XMLHttpRequest();
     req.open('POST', url);
     req.addEventListener('load', function() {
@@ -40,7 +40,7 @@ function ajaxPost(url, data, callback)
         }
     });
     req.addEventListener('error', function() {
-        console.error("Erreur réseau avec l'URL " + url);
+        console.error("Network failure with URL " + url);
     });
     req.send(data);
 }
@@ -49,7 +49,7 @@ function getRandomAnswer(array) {
   return array[Math.floor(Math.random() * Math.floor(3))];
 }
 
-function responseTreatment(data)
+function botResponseTreatment(response_data)
 // Get AJAX response, remove gif loader and display answer
 {
     var validAnswer = ["Bien-sûr mon poussin ! La voici : ",
@@ -65,13 +65,13 @@ function responseTreatment(data)
                         "Ah, ça y est, j'ai fini de télécharger mes souvenirs. ",
                         "Laisse moi retrouver l'entrée dans ma base de donnée ... J'y suis. "]
 
-    var data = JSON.parse(data);
+    var data = JSON.parse(response_data);
 
     // debug
     console.log("contenu de data :", data);
-    removeLoader();
+    removeGifLoader();
     if (data !== "") {
-        displayPybot(getRandomAnswer(validAnswer) + data['address'] + ".", "")
+        displayBotEntry(getRandomAnswer(validAnswer) + data['address'] + ".", "")
         initMap(data['coords']);
         // debug
         console.log(data['coords'])
@@ -80,15 +80,13 @@ function responseTreatment(data)
         console.log(data['url']);
         //
         if (data['extract'] !== "") {
-            displayPybot((getRandomAnswer(extractFound) + data['extract']), data['url']);
-
-            //displayPybot("<a href=" + data['url'] + "> [En savoir plus sur Wikipédia]</a> <br />" );
+            displayBotEntry((getRandomAnswer(extractFound) + data['extract']), data['url']);
 
         } else {
-            displayPybot(getRandomAnswer(noExtractFound))
+            displayBotEntry(getRandomAnswer(noExtractFound))
         }
     } else {
-        displayPybot(getRandomAnswer(notFoundAnswer), "")
+        displayBotEntry( getRandomAnswer(notFoundAnswer), "")
     }
 }
 

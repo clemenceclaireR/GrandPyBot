@@ -20,6 +20,8 @@ You have 2 options.
 
 **1 - Heroku**
 
+Just visit this link ! _https://nameless-earth-22211.herokuapp.com/_
+
 **2 - Cloning this repository**
 
 **Prerequisites**  

@@ -35,6 +35,7 @@ class TestMockWikiRequest:
         Get extract from wikipedia page, wikipedia page id is included
         """
         with requests_mock.Mocker() as mocker:
+            mt_st_michel = WikiRequest(48.636063, -1.511457)
             page = 1187468
             result = '{"query": {"pages": [{"extract": ' \
                      '"Le Mont-Saint-Michel est une commune française située dans le département de la Manche ' \

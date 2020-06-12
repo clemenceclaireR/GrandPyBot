@@ -6,6 +6,7 @@ from os import environ
 
 GMAP_KEY = environ.get('GMAPS_API_KEY')
 
+
 class GoogleMapRequest:
     """
     handles request to Google Maps API
@@ -39,6 +40,3 @@ class GoogleMapRequest:
         gmaps_data = requests.get(self.url)
         print("data >", gmaps_data.json())
         return gmaps_data.json()
-
-
-
