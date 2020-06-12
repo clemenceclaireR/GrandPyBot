@@ -13,7 +13,7 @@ from app.api.google_map import GMAP_KEY
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     """
-    Initiates the /index page (no other page in this app)
+    Initiates the index/main page
     """
     form = DialogForm()
     return render_template('index.html', form=form, key=GMAP_KEY)
@@ -23,7 +23,7 @@ def index():
 def treat_request():
     """
     Store user request, call the parser on it and get coordinates from
-    GoogleMaps. If coords corresponds to OC address, then call
+    GoogleMaps. If coords, then call
     MediaWiki API to extract its description.
     """
     return ajax_request()
