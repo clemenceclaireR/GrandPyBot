@@ -49,3 +49,18 @@ program running. You have to activate Geocoding API and Maps Javascript API.
 - Run _flask run_ in your terminal
 - Launch you web browser and go to the local server, _127.0.0.1:5000_ by default
 - Write your question in the form and wait for GrandPy to answer you.
+
+**Testing with Pytest library**
+
+Pytest is the library being used in this program.
+In order to run the tests, do like so :
+- Go the the project's root in your terminal
+- Run _pytest_ (Pytest has to be installed)
+
+If the test is validated, it will be green.
+
+You can test the coverage of the tests like so :
+_pytest --cov=app --cov-report html_ 
+
+It will generate a _htmlcov_ directory in the project. Launch
+_index.html_ in your browser to see the results.
