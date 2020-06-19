@@ -8,9 +8,8 @@ from wtforms.validators import DataRequired
 
 
 class DialogForm(FlaskForm):
-    """Minimalist form used in /index page
     """
-    user_request = StringField(
-        "Dis-moi GrandPy, ...", validators=[DataRequired()]
-        )
-    submit = SubmitField("Dire")
+    Form for chatwindow
+    """
+    user_request = StringField(validators=[DataRequired()])
+    submit = SubmitField("Envoyer")
