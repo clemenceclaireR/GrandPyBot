@@ -4,4 +4,4 @@ flask-wtf
 requests-mock
 gunicorn
 heroku.env
-Flask-testing
+blinker

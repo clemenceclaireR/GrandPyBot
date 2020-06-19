@@ -7,9 +7,11 @@ from flask import template_rendered
 from contextlib import contextmanager
 from app import app
 
+
 @contextmanager
 def captured_templates(app):
     recorded = []
+
     def record(sender, template, context, **extra):
         recorded.append((template, context))
     template_rendered.connect(record, app)
@@ -18,6 +20,7 @@ def captured_templates(app):
     finally:
         template_rendered.disconnect(record, app)
 
+
 def test_index():
     with captured_templates(app) as templates:
         rv = app.test_client().get('/')
@@ -25,4 +28,10 @@ def test_index():
         assert len(templates) == 1
         template, context = templates[0]
         assert template.name == 'index.html'
-        #assert len(context['items']) == 10
+
+
+def test_ajax():
+    with captured_templates(app) as templates:
+        rv = app.test_client().get('/ajax')
+        assert rv.status_code == 405
+
