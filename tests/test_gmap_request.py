@@ -4,9 +4,8 @@
 import requests_mock
 import os
 import sys
-# in order to not raise ValueError: attempted relative import beyond top-level package :
-import json
-
+# in order to not raise ValueError: attempted relative
+# import beyond top-level package :
 sys.path.append(os.path.realpath(''))
 from app.api.google_map import GoogleMapRequest
 
@@ -18,13 +17,15 @@ class TestMockGmap:
 
     def test_get_oc_address_coords(self):
         """
-        Test a basic GoogleMapRequest with a mocked API response containing OC coordinates
+        Test a basic GoogleMapRequest with a mocked API
+        response containing OC coordinates
         in order to run test without internet connection or overwrite
         """
         with requests_mock.Mocker() as mocker:
             oc_address = GoogleMapRequest("openclassrooms")
-            result = '{"results" : [{"formatted_address": "7 Cité Paradis, 75010 Paris, France","geometry": {"location": \
-            {"lat": 48.8748465, "lng": 2.3504873}}}]}'
+            result = '{"results" : [{"formatted_address": "7 Cité Paradis, ' \
+                     '75010 Paris, France","geometry": {"location": ' \
+                     '{"lat": 48.8748465, "lng": 2.3504873}}}]}'
             mocker.get(oc_address.url, text=result)
             results = oc_address.extract_address_and_coordinates()
             coords = results['results'][0]['geometry']['location']
@@ -37,6 +38,7 @@ class TestGMapsRequest:
     """
     'Real' requests using Google Maps API and real responses
     """
+
     def test_get_oc_address_coords(self):
         with requests_mock.Mocker() as mocker:
             oc_address = GoogleMapRequest("openclassrooms")

@@ -5,3 +5,6 @@ requests-mock
 gunicorn
 heroku.env
 blinker
+pytest
+pytest-cov
+coverage

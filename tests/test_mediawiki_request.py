@@ -22,7 +22,7 @@ class TestMockWikiRequest:
         """
         with requests_mock.Mocker() as mocker:
             mt_st_michel = WikiRequest(48.636063, -1.511457)
-            result = '{"batchcomplete":"","warnings":{"extracts":{"*":"BONSOIR"}},' \
+            result = '{"batchcomplete":"","warnings":{"extracts":{"*":""}},' \
                      '"query":{"pages":{"1187468":{"pageid":1187468,"ns":0,"title":"Le Mont-Saint-Michel",' \
                      '"extract":"Le Mont-Saint-Michel est une commune française située dans le département de la ' \
                      'Manche en Normandie. Elle tire son nom de l\'îlot rocheux consacré à saint Michel où ' \
@@ -52,7 +52,8 @@ class TestMockWikiRequest:
         """
         with requests_mock.Mocker() as mocker:
             mt_st_michel = WikiRequest(48.636063, -1.511457)
-            result = '{"query": {"geosearch": [{"title": "Le Mont-Saint-Michel"}]}}'
+            result = '{"query": {"geosearch": [{"title": ' \
+                     '"Le Mont-Saint-Michel"}]}}'
             mocker.get(mt_st_michel.url_page_id, text=result)
             assert mt_st_michel.get_page_title() == "Le Mont-Saint-Michel"
 
@@ -62,9 +63,11 @@ class TestMockWikiRequest:
         """
         with requests_mock.Mocker() as mocker:
             mt_st_michel = WikiRequest(48.636063, -1.511457)
-            result = '{"query": {"pages": [{"fullurl": "https://fr.wikipedia.org/wiki/Le_Mont-Saint-Michel"}]}}'
-            mocker.get('http://fr.wikipedia.org/w/api.php?action=query&prop=extracts|info&exsentences=3'
-                       '&inprop=url&explaintext=&titles={}&format=json&formatversion=2'
+            result = '{"query": {"pages": [{"fullurl": ' \
+                     '"https://fr.wikipedia.org/wiki/Le_Mont-Saint-Michel"}]}}'
+            mocker.get('http://fr.wikipedia.org/w/api.php?action=query&prop='
+                       'extracts|info&exsentences=3&inprop=url&explaintext=&'
+                       'titles={}&format=json&formatversion=2'
                        .format("Le Mont-Saint-Michel"), text=result)
             assert mt_st_michel.get_page_full_url(
                 "Le Mont-Saint-Michel") == "https://fr.wikipedia.org/wiki/Le_Mont-Saint-Michel"
@@ -91,10 +94,10 @@ class TestWikiRequest:
     def test_get_extract(self):
         assert self.mt_st_michel.get_extract() == "Le Mont-Saint-Michel est une commune française située dans " \
                                                   "le département de la Manche en Normandie. Elle tire son nom de " \
-                                                  "l'îlot" \
-                                                  " rocheux consacré à saint Michel où s’élève aujourd’hui l’abbaye du " \
-                                                  "Mont-Saint-Michel.\nL’architecture du Mont-Saint-Michel et sa baie " \
-                                                  "en font le site touristique le plus fréquenté de Normandie et l'un " \
+                                                  "l'îlot rocheux consacré à saint Michel où s’élève aujourd’hui " \
+                                                  "l’abbaye du Mont-Saint-Michel.\nL’architecture " \
+                                                  "du Mont-Saint-Michel et sa baie en font le site " \
+                                                  "touristique le plus fréquenté de Normandie et l'un " \
                                                   "des dix plus fréquentés en France — premier site après ceux " \
                                                   "d'Île-de-France — avec près de deux millions et demi de " \
                                                   "visiteurs chaque année (3 250 000 en 2006, 2 300 000 en 2014)."

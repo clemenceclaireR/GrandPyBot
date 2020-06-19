@@ -18,7 +18,8 @@ class GoogleMapRequest:
         Takes user input to merge it with the request to Google API
         """
         self.question = ".".join(user_request.split())
-        self.url = GoogleMapRequest.URL_BASE + self.question + "&key=" + GMAP_KEY
+        self.url = GoogleMapRequest.URL_BASE + \
+                   self.question + "&key=" + GMAP_KEY
 
     def extract_address_and_coordinates(self):
         """

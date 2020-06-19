@@ -1,7 +1,5 @@
-import os
-import tempfile
-
-import pytest
+#! /usr/bin/env python3
+# coding: utf-8
 
 from flask import template_rendered
 from contextlib import contextmanager
@@ -31,7 +29,6 @@ def test_index():
 
 
 def test_ajax():
-    with captured_templates(app) as templates:
+    with captured_templates(app):
         rv = app.test_client().get('/ajax')
         assert rv.status_code == 405
-

@@ -99,25 +99,25 @@ header {
 
 input, .user {
     padding: 5px;
-    color: palevioletred;
+    color: #520b52;
 }
 
 input, .grandpybot {
     padding: 5px;
-    color: darkblue;
+    color: #00003d;
 }
 
 .grandpybot_title {
     padding: 5px;
     font-weight: bold;
-    color: darkblue;
+    color: #00003d;
 }
 
 .user_title {
     padding: 5px;
     font-weight: bold;
     text-align: right;
-    color: palevioletred;
+    color: #520b52;
 }
 
 #chatform {

@@ -9,10 +9,12 @@ class WikiRequest:
     """
     Get the page from the Media Wiki API and get an extract
     """
-    API_PAGEID_LINK = "https://fr.wikipedia.org/w/api.php?action=query&pageids={}" \
-                      "&prop=extracts&explaintext=true&exsectionformat=plain&exsentences=3&format=json"
-    API_GEOLOC_LINK = "https://fr.wikipedia.org/w/api.php?action=query&prop=extracts&" \
-                      "list=geosearch&gscoord={}|{}&gsradius=10000&gslimit=1&format=json"
+    API_PAGEID_LINK = "https://fr.wikipedia.org/w/api.php?action=query&pageids" \
+                      "={}&prop=extracts&explaintext=true&exsectionformat=" \
+                      "plain&exsentences=3&format=json"
+    API_GEOLOC_LINK = "https://fr.wikipedia.org/w/api.php?action=query&prop=" \
+                      "extracts&list=geosearch&gscoord={}|{}&gsradius=" \
+                      "10000&gslimit=1&format=json"
     PAGE_ID = ""
 
     def __init__(self, *args):
@@ -22,7 +24,8 @@ class WikiRequest:
         try:
             self.latitude = args[0]
             self.longitude = args[1]
-            self.url_page_id = WikiRequest.API_GEOLOC_LINK.format(self.latitude, self.longitude)
+            self.url_page_id = WikiRequest.API_GEOLOC_LINK.\
+                format(self.latitude, self.longitude)
         except:
             pass
 
@@ -36,8 +39,10 @@ class WikiRequest:
             return ""
 
     def get_page_full_url(self, title):
-        wiki_data = requests.get('http://fr.wikipedia.org/w/api.php?action=query&prop=extracts|info&exsentences=3'
-                                 '&inprop=url&explaintext=&titles={}&format=json&formatversion=2'.format(title))
+        wiki_data = requests.get('http://fr.wikipedia.org/w/api.php?action='
+                                 'query&prop=extracts|info&exsentences=3&'
+                                 'inprop=url&explaintext=&titles={}&format'
+                                 '=json&formatversion=2'.format(title))
         wiki_data = wiki_data.json()
         url = wiki_data["query"]["pages"][0]["fullurl"]
 
@@ -61,7 +66,6 @@ class WikiRequest:
         Builds the url to request with the page id
         Returns an extract of the Wikipedia page
         """
-        #page_id = self.get_page_id()
         WikiRequest.PAGE_ID = self.get_page_id()
         url_extract = WikiRequest.API_PAGEID_LINK.format(WikiRequest.PAGE_ID)
         wiki_data = requests.get(url_extract)
