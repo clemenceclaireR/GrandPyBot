@@ -26,6 +26,3 @@ class Parser:
             w for w in sentence.split() if w not in self.stopwords)
         return sentence
 
-
-if __name__ == "__main__":
-    pass

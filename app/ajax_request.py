@@ -7,20 +7,33 @@ from app.api.media_wiki import WikiRequest
 from app.parser.parser import Parser
 
 
+def decode_request():
+    return request.data.decode('utf-8')
+
+
+def clean_user_query(user_query):
+    parser = Parser()
+    return parser.clean(user_query)
+
+
+def check_if_status(results):
+    status = results['status']
+    if status != 'ZERO_RESULTS':
+        return True
+
+
 def ajax_request():
     """
     Store user request, call the parser on it and get coordinates from
     GoogleMaps. Then call MediaWiki API to extract its description.
     """
-    user_query = request.data.decode('utf-8')
-
-    parser = Parser()
-    cleaned_query = parser.clean(user_query)
+    user_query = decode_request()
+    cleaned_query = clean_user_query(user_query)
 
     gmaps_request = GoogleMapRequest(cleaned_query)
     results = gmaps_request.extract_address_and_coordinates()
-    status = results['status']
-    if status != 'ZERO_RESULTS':
+
+    if check_if_status(results):
         coords = results['results'][0]['geometry']['location']
         address = results['results'][0]['formatted_address']
 
@@ -31,8 +44,6 @@ def ajax_request():
             url = wiki_request.get_page_full_url(title)
             response = {'extract': extract, 'coords': coords,
                         'address': address, 'url': url}
-            print("response >", response)
-            print(jsonify(response))
             return jsonify(response)
         else:
             response = ""

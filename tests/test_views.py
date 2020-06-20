@@ -32,3 +32,4 @@ def test_ajax():
     with captured_templates(app):
         rv = app.test_client().get('/ajax')
         assert rv.status_code == 405
+

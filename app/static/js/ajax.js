@@ -24,6 +24,7 @@ function userQueryTreatment(userQuery)
     var userZone = document.getElementById("user_query");
     userZone.value = "";
     ajaxPostRequest('/ajax', userQuery, botResponseTreatment);
+    console.log(userQuery);
 }
 
 function ajaxPostRequest(url, data, callback)
@@ -58,9 +59,12 @@ function botResponseTreatment(response_data)
     var notFoundAnswer = ["Désolé, parfois je perds un peu le fil.",
                         "Hein ? J'ai les circuits auditifs oxydés ...",
                         "Mon kernel n'est pas très coopératif aujourd'hui ..."]
-    var noExtractFound = ["Hmm, je connais cet endroit mais je ne me souviens plus de son histoire ... Mais je peux t'en raconter d'autres si tu veux !",
+    var noExtractFound = ["Hmm, je connais cet endroit mais je ne me souviens plus de son histoire ... " +
+    "Mais je peux t'en raconter d'autres si tu veux !",
                             "Pas le temps pour les histoires, mes batteries sont à plat !",
-                            "De mon temps, quand on ne connaissait pas quelque-chose, il fallait demander sur la place du village ! Je crois que ça s'appelle Quora maintenant, ou peut-être Reddit ..."]
+                            "De mon temps, quand on ne connaissait pas quelque-chose, il " +
+                            "fallait demander sur la place du village ! Je crois que ça s'appelle " +
+                            "Quora maintenant, ou peut-être Reddit ..."]
     var extractFound = ["Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? ",
                         "Ah, ça y est, j'ai fini de télécharger mes souvenirs. ",
                         "Laisse moi retrouver l'entrée dans ma base de donnée ... J'y suis. "]

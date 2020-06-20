@@ -4,6 +4,7 @@
 import requests_mock
 import os
 import sys
+import pytest
 # in order to not raise ValueError: attempted relative
 # import beyond top-level package :
 sys.path.append(os.path.realpath(''))
@@ -32,12 +33,23 @@ class TestMockGmap:
             address = results['results'][0]['formatted_address']
             assert coords == {'lat': 48.8748465, 'lng': 2.3504873}
             assert address == '7 Cité Paradis, 75010 Paris, France'
-
-
+"""
+    #@pytest.mark.xfail(raises=IndexError)
+    def test_fail_get_oc_address_coords(self):
+        with requests_mock.Mocker() as mocker:
+            oc_address = GoogleMapRequest("qws")
+            result = '{"results" : [], "status": "ZERO_RESULTS"}'
+            mocker.get(oc_address.url, text=result)
+            results = oc_address.extract_address_and_coordinates()
+                #raise  IndexError
+            assert results == {'results': [], 'status': 'ZERO_RESULTS'}
+            # 'status': 'ZERO_RESULTS'
+"""
+"""
 class TestGMapsRequest:
-    """
+    \"""
     'Real' requests using Google Maps API and real responses
-    """
+    \"""
 
     def test_get_oc_address_coords(self):
         with requests_mock.Mocker() as mocker:
@@ -49,7 +61,7 @@ class TestGMapsRequest:
             assert coords == {'lat': 48.8748465, 'lng': 2.3504873}
             assert address == '7 Cité Paradis, 75010 Paris, France'
 
-    """
+
     def setup(self):
         self.openclassrooms = GoogleMapRequest("openclassrooms paris")
 

@@ -9,7 +9,7 @@ from wtforms.validators import DataRequired
 
 class DialogForm(FlaskForm):
     """
-    Form for chatwindow
+    Form which will be use in the template for the chat
     """
     user_request = StringField(validators=[DataRequired()])
     submit = SubmitField("Envoyer")
