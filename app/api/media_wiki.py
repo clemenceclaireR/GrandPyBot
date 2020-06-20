@@ -66,7 +66,6 @@ class WikiRequest:
         except IndexError or KeyError:
             return ""
 
-
     def get_extract(self):
         """
         Builds the url to request with the page id

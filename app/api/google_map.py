@@ -37,5 +37,4 @@ class GoogleMapRequest:
         Get data from Google Map API and return it in a JSON format
         """
         gmaps_data = requests.get(self.url)
-        #print("data >", gmaps_data.json())
         return gmaps_data.json()

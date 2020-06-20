@@ -12,13 +12,13 @@ from app.api.media_wiki import WikiRequest
 
 class TestMockWikiRequest:
     """
-    Mock functions to be independant from the internet and test functions logic,
+    Mock functions to be independent from the internet and test functions logic,
     doesn't fail if wikipedia page updated in between
     """
-
     def test_get_extract(self):
         """
-        Get extract from wikipedia page, wikipedia page id is included
+        Mock request in order to get an extract from
+        wikipedia page, wikipedia page id is included
         """
         with requests_mock.Mocker() as mocker:
             mt_st_michel = WikiRequest(48.636063, -1.511457)
@@ -48,7 +48,7 @@ class TestMockWikiRequest:
 
     def test_get_page_title(self):
         """
-        Get wikipedia page title
+        Mock request to get a given wikipedia page title
         """
         with requests_mock.Mocker() as mocker:
             mt_st_michel = WikiRequest(48.636063, -1.511457)
@@ -59,7 +59,7 @@ class TestMockWikiRequest:
 
     def test_get_url(self):
         """
-        Get wikipedia page url
+        Mock request to get a given wikipedia page url
         """
         with requests_mock.Mocker() as mocker:
             mt_st_michel = WikiRequest(48.636063, -1.511457)
@@ -74,7 +74,7 @@ class TestMockWikiRequest:
 
     def test_get_page_id(self):
         """
-        Get wikipedia page id
+        Mock request to get a given wikipedia page id
         """
         with requests_mock.Mocker() as mocker:
             mt_st_michel = WikiRequest(48.636063, -1.511457)
@@ -92,6 +92,9 @@ class TestWikiRequest:
         self.mt_st_michel = WikiRequest(48.636063, -1.511457)
 
     def test_get_extract(self):
+        """
+        Get an extract of a given wikipedia page
+        """
         assert self.mt_st_michel.get_extract() == "Le Mont-Saint-Michel est une commune française située dans " \
                                                   "le département de la Manche en Normandie. Elle tire son nom de " \
                                                   "l'îlot rocheux consacré à saint Michel où s’élève aujourd’hui " \
@@ -103,11 +106,20 @@ class TestWikiRequest:
                                                   "visiteurs chaque année (3 250 000 en 2006, 2 300 000 en 2014)."
 
     def test_get_page_title(self):
+        """
+        Test to get a giwen wikipedia page title
+        """
         assert self.mt_st_michel.get_page_title() == "Le Mont-Saint-Michel"
 
     def test_get_url(self):
+        """
+        Test to get a given wikipedia page url
+        """
         assert self.mt_st_michel.get_page_full_url("Le Mont-Saint-Michel") == \
                "https://fr.wikipedia.org/wiki/Le_Mont-Saint-Michel"
 
     def test_get_page_id(self):
+        """
+        Test to get a given wikipedia page id
+        """
         assert self.mt_st_michel.get_page_id() == 1187468

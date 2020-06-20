@@ -20,17 +20,21 @@ $(document).on('keydown', function(event)
 function userQueryTreatment(userQuery)
 // Display user query in chat window, clear form and init ajax request
 {
+    // display user entry
     displayUserEntry(userQuery);
     var userZone = document.getElementById("user_query");
     userZone.value = "";
+    // call functions to POST request and its response
     ajaxPostRequest('/ajax', userQuery, botResponseTreatment);
-    console.log(userQuery);
 }
 
 function ajaxPostRequest(url, data, callback)
 // Display gif loader, prepare and send ajax 'POST' request
 {
+    // display gif loader when function is processing
     displayGifLoader();
+    // POST request treatment and check its reponse
+    // If okay, send data
     var req = new XMLHttpRequest();
     req.open('POST', url);
     req.addEventListener('load', function() {
@@ -46,13 +50,16 @@ function ajaxPostRequest(url, data, callback)
     req.send(data);
 }
 
-function getRandomAnswer(array) {
+function getRandomAnswer(array)
+// get a random number for Grandpy to answer differently
+{
   return array[Math.floor(Math.random() * Math.floor(3))];
 }
 
 function botResponseTreatment(response_data)
 // Get AJAX response, remove gif loader and display answer
 {
+    // set GrandPy answers according to the situation
     var validAnswer = ["Bien-sûr mon poussin ! La voici : ",
                       "C'est là que j'ai connu ta grand-mère, figure-toi ! C'est à cette adresse : ",
                       "Tiens, j'en ai justement entendu parler dans le journal de midi ! C'est à cet endroit : "]
@@ -68,27 +75,22 @@ function botResponseTreatment(response_data)
     var extractFound = ["Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? ",
                         "Ah, ça y est, j'ai fini de télécharger mes souvenirs. ",
                         "Laisse moi retrouver l'entrée dans ma base de donnée ... J'y suis. "]
-
+    // parse response and remove loader when function is terminated
     var data = JSON.parse(response_data);
-
-    // debug
-    console.log("contenu de data :", data);
     removeGifLoader();
+
+    // if data, then display an answer and display map
     if (data !== "") {
         displayBotEntry(getRandomAnswer(validAnswer) + data['address'] + ".", "")
         initMap(data['coords']);
-        // debug
-        console.log(data['coords'])
-        console.log(data['extract']);
-        console.log(data['address']);
-        console.log(data['url']);
-        //
+        // if there is an extract, display answer, the extract and its corresponding link
         if (data['extract'] !== "") {
             displayBotEntry((getRandomAnswer(extractFound) + data['extract']), data['url']);
-
+        // else, no extract found answer (and no extract)
         } else {
             displayBotEntry(getRandomAnswer(noExtractFound))
         }
+        // if nothing found, then display corresponding answer
     } else {
         displayBotEntry( getRandomAnswer(notFoundAnswer), "")
     }

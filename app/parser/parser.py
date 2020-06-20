@@ -19,7 +19,7 @@ class Parser:
 
     def clean(self, sentence):
         """
-        get request to lowercase
+        Get request to lowercase
         """
         sentence = sentence.lower()
         sentence = " ".join(

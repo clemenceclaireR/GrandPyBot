@@ -7,7 +7,10 @@ from app import app
 
 
 @contextmanager
-def captured_templates(app):
+def capture_templates(app):
+    """
+    Capture template in order to call them in test functions
+    """
     recorded = []
 
     def record(sender, template, context, **extra):
@@ -20,7 +23,11 @@ def captured_templates(app):
 
 
 def test_index():
-    with captured_templates(app) as templates:
+    """
+    Tests route for index with its corresponding template
+    and success code
+    """
+    with capture_templates(app) as templates:
         rv = app.test_client().get('/')
         assert rv.status_code == 200
         assert len(templates) == 1
@@ -29,7 +36,13 @@ def test_index():
 
 
 def test_ajax():
-    with captured_templates(app):
-        rv = app.test_client().get('/ajax')
-        assert rv.status_code == 405
+    """
+    Test a post request with data and get a http success code
+    """
+    with capture_templates(app):
+        tester = app.test_client()
+        data = "berlin"
+        rv = tester.post('/ajax', headers=[('X-Requested-With',
+                                            'XMLHttpRequest')], data=data)
+        assert rv.status_code == 200
 
