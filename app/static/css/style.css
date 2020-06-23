@@ -16,32 +16,32 @@ header {
     height: 100px;
 }
 
-
-#headline {
-    font-size: 1em;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    text-shadow: 2px 2px 2px #000000;
-    letter-spacing: 2px;
-    word-spacing: 2px;
-}
-
 #title {
-    padding: 5px 5px 5px 5px;
+    padding: 0.3em 0.3em 0.3em 0.3em;
     font-size: 2em;
     font-weight: bold;
     font-family: Tahoma, Geneva, sans-serif;
-    letter-spacing: 6px;
-    word-spacing: 1.6px;
+    letter-spacing: 0.3em;
+    word-spacing: 0.3em;
     color: #1b1856;
     text-decoration: none solid rgb(68, 68, 68);
     font-style: normal;
     font-variant: small-caps;
 }
 
-/* Chat */
+#headline {
+    font-size: 1em;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    text-shadow: 0.15em 0.15em 0.15em #000000;
+    letter-spacing: 0.3em;
+    word-spacing: 0.3em;
+}
+
+
+/* Chat window and its components */
 
 #chatwindow, #ajax-loader, .user, .map, .grandpybot, #chatform, input {
-    border-radius: 1px;
+    border-radius: 0.1em;
 }
 
 #chatwindow, .map {
@@ -49,13 +49,12 @@ header {
 }
 
 #chatwindow {
-    opacity: 1;
     background-color: #a1d9c5;
     height: 20em;
     margin: 1.2em 1em 1em 0;
     overflow: auto;
     font-size: 1.3em;
-    font-family: arial;
+    font-family: arial, serif;
     border-radius: 0.5em;
 }
 
@@ -91,32 +90,25 @@ header {
 
 input, .user {
     background-color: antiquewhite;
-    padding: 5px;
+    padding: 0.5em;
     color: #520b52;
     box-shadow: 1px 2px 2px rgba(245,245,220,.8);
     border-radius: 0.2em;
-    /*border: solid 0.1em darkslategrey;*/
 }
-
-/*input, .user, .user_title {
-    border: solid 0.1em darkslategrey;
-}
-
- */
 
 input, .grandpybot {
-    padding: 5px;
+    padding: 0.5em;
     color: #00003d;
 }
 
 .grandpybot_title {
-    padding: 5px;
+    padding: 0.5em;
     font-weight: bold;
     color: #00003d;
 }
 
 .user_title {
-    padding: 5px;
+    padding: 0.5em;
     font-weight: bold;
     text-align: right;
     position: relative;
@@ -128,9 +120,6 @@ input, .grandpybot {
     font-size: 1.3em;
 }
 
-input {
-    padding: 5px;
-}
 
 #submit {
     /* got on https://charliepark.org/bootstrap_buttons */
@@ -149,12 +138,9 @@ input {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
   -webkit-font-smoothing: antialiased;
 }
-/* Footer zone */
-footer {
-    /*
-    padding: 3em 0 1em 0;
-    */
 
+/* Footer and its component */
+footer {
 }
 
 #button_info {
@@ -180,18 +166,6 @@ footer {
 
 /* small devices like smartphones */
 @media all and (max-width: 480px) {
-    /* Header zone */
-    #logo {
-        background-position: center; /* accordingly to bootstrap grid */
-        background-image: url("../img/logo_bot.png");
-        background-repeat: no-repeat;
-        height: 100px;
-    }
-
-    #user_query {
-        padding-bottom: 1em;
-        margin-bottom: 1em;
-    }
 
     #submit {
         font-size: 1.2em;
@@ -201,10 +175,6 @@ footer {
     #chatwindow {;
         height: 440px;
         margin: 0;
-    }
-
-    #title_catchphrase {
-
     }
 
      .user, .grandpybot {
