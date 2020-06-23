@@ -1,8 +1,5 @@
 body {
-    padding-top: 1em;
-    padding-bottom: 1em;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding: 1em;
     background-color: #cccccc;
 }
 
@@ -13,17 +10,16 @@ header {
 }
 
 #logo {
-    background-position: center; /*accordingly to bootstrap grid*/
+    background-position: center; /* accordingly to bootstrap grid */
     background-image: url("../img/logo_bot.png");
     background-repeat: no-repeat;
     height: 100px;
 }
 
+
 #headline {
     font-size: 1em;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    /*font-weight: bold;*/
-    /*font-style: italic;*/
     text-shadow: 2px 2px 2px #000000;
     letter-spacing: 2px;
     word-spacing: 2px;
@@ -31,14 +27,12 @@ header {
 
 #title {
     padding: 5px 5px 5px 5px;
-    font-family: arial;
     font-size: 2em;
     font-weight: bold;
     font-family: Tahoma, Geneva, sans-serif;
     letter-spacing: 6px;
     word-spacing: 1.6px;
     color: #1b1856;
-    font-weight: 700;
     text-decoration: none solid rgb(68, 68, 68);
     font-style: normal;
     font-variant: small-caps;
@@ -58,11 +52,10 @@ header {
     opacity: 1;
     background-color: #a1d9c5;
     height: 20em;
-    margin: 0em 1em 1em 0;
+    margin: 1.2em 1em 1em 0;
     overflow: auto;
     font-size: 1.3em;
     font-family: arial;
-    /*box-shadow: 1px 2px 2px rgba(0,0,0,.5);*/
     border-radius: 0.5em;
 }
 
@@ -90,7 +83,6 @@ header {
 }
 
 .grandpybot {
-    /*background-color: #002200;*/
     opacity: 1;
     font-family: arial;
     padding: 5px;
@@ -98,26 +90,37 @@ header {
 }
 
 input, .user {
+    background-color: antiquewhite;
     padding: 5px;
-    color: palevioletred;
+    color: #520b52;
+    box-shadow: 1px 2px 2px rgba(245,245,220,.8);
+    border-radius: 0.2em;
+    /*border: solid 0.1em darkslategrey;*/
 }
+
+/*input, .user, .user_title {
+    border: solid 0.1em darkslategrey;
+}
+
+ */
 
 input, .grandpybot {
     padding: 5px;
-    color: darkblue;
+    color: #00003d;
 }
 
 .grandpybot_title {
     padding: 5px;
     font-weight: bold;
-    color: darkblue;
+    color: #00003d;
 }
 
 .user_title {
     padding: 5px;
     font-weight: bold;
     text-align: right;
-    color: palevioletred;
+    position: relative;
+    color: #520b52;
 }
 
 #chatform {
@@ -148,11 +151,10 @@ input {
 }
 /* Footer zone */
 footer {
-    /*background-image: linear-gradient(to top, #E0D7DA, #008080);
+    /*
     padding: 3em 0 1em 0;
-    margin-top: 0.2em;
-    border-top: solid 0.2em black;
-    font-size: 0.8em;*/
+    */
+
 }
 
 #button_info {
@@ -166,11 +168,6 @@ footer {
   margin-left: auto;
 }
 
-/* test background
-.container-fluid {
-    background-color: #d3d3d3;
-}
-*/
 
 #crossed-out
 {
@@ -181,12 +178,11 @@ footer {
 
 /* MEDIA QUERIES  */
 
-/* small devices (lt than 768) */
-@media all and (max-device-width: 480px)
-{
+/* small devices like smartphones */
+@media all and (max-width: 480px) {
     /* Header zone */
     #logo {
-        background-position: center; /*accordingly to bootstrap grid*/
+        background-position: center; /* accordingly to bootstrap grid */
         background-image: url("../img/logo_bot.png");
         background-repeat: no-repeat;
         height: 100px;
@@ -194,25 +190,24 @@ footer {
 
     #user_query {
         padding-bottom: 1em;
+        margin-bottom: 1em;
     }
 
-/* all medias, large devices (lt 1200) */
-@media all and (max-device-width: 1280px)
-{
-    /* Chat zone */
-    #chatwindow {;
-        height: 510px;
+    #submit {
+        font-size: 1.2em;
+        margin-top: 1em;
     }
-}
 
-
-    /* Chat zone */
     #chatwindow {;
         height: 440px;
         margin: 0;
     }
 
-    .user, .grandpybot {
+    #title_catchphrase {
+
+    }
+
+     .user, .grandpybot {
         font-size: 0.9em;
     }
 
@@ -224,6 +219,7 @@ footer {
         height: 120px;
     }
 
+
     #chatform {
         margin: 10px 0 10px 0;
         font-size: 1.2em;
@@ -231,11 +227,57 @@ footer {
 
     #submit {
         font-size: 1.2em;
-        margin-top: 0.5em;
     }
 
-    /* Footer zone */
     footer {
         margin-top: 10px;
+    }
+}
+
+/* margin when "Envoyer" button go under form bar */
+@media all and (min-width: 480px) and (max-width: 767px) {
+    #submit {
+        margin-top: 1.2em;
+    }
+}
+/* adapt chatwindow for "big" screens */
+@media all and (min-width: 700px) and (max-width: 1000px) {
+    #chatwindow {
+        margin-top: 2em;
+        height: 450px;
+    }
+}
+@media all and (max-width: 1999px) {
+    #chatwindow {
+        margin-top: 2em;
+        height: 400px;
+    }
+}
+
+/* tablet or moderate size computer screen (lt 1200) */
+@media all and (min-width: 700px) and (max-width: 1899px) {
+
+
+    #title_catchphrase {
+        background-color: #d5f7ff;
+        padding-bottom: 1em;
+        border-radius: 0.5em;
+        border: solid 1px darkslategrey;
+    }
+}
+
+/* for computer screen */
+@media all and (min-width: 1899px) and (max-width: 1920px)  {
+
+    #chatwindow {
+        margin-top: 2em;
+        height: 600px;
+    }
+
+    #title_catchphrase {
+        background-color: #d5f7ff;
+        padding-bottom: 1em;
+        border-radius: 0.5em;
+        border : solid 1px darkslategrey;
     }
 }

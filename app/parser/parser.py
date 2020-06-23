@@ -19,13 +19,10 @@ class Parser:
 
     def clean(self, sentence):
         """
-        get request to lowercase
+        Get request to lowercase
         """
         sentence = sentence.lower()
         sentence = " ".join(
             w for w in sentence.split() if w not in self.stopwords)
         return sentence
 
-
-if __name__ == "__main__":
-    pass

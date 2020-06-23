@@ -1,15 +1,18 @@
-import os
-import tempfile
-
-import pytest
+#! /usr/bin/env python3
+# coding: utf-8
 
 from flask import template_rendered
 from contextlib import contextmanager
 from app import app
 
+
 @contextmanager
-def captured_templates(app):
+def capture_templates(app):
+    """
+    Capture template in order to call them in test functions
+    """
     recorded = []
+
     def record(sender, template, context, **extra):
         recorded.append((template, context))
     template_rendered.connect(record, app)
@@ -18,11 +21,28 @@ def captured_templates(app):
     finally:
         template_rendered.disconnect(record, app)
 
+
 def test_index():
-    with captured_templates(app) as templates:
+    """
+    Tests route for index with its corresponding template
+    and success code
+    """
+    with capture_templates(app) as templates:
         rv = app.test_client().get('/')
         assert rv.status_code == 200
         assert len(templates) == 1
         template, context = templates[0]
         assert template.name == 'index.html'
-        #assert len(context['items']) == 10
+
+
+def test_ajax():
+    """
+    Test a post request with data and get a http success code
+    """
+    with capture_templates(app):
+        tester = app.test_client()
+        data = "berlin"
+        rv = tester.post('/ajax', headers=[('X-Requested-With',
+                                            'XMLHttpRequest')], data=data)
+        assert rv.status_code == 200
+

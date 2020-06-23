@@ -18,7 +18,8 @@ class GoogleMapRequest:
         Takes user input to merge it with the request to Google API
         """
         self.question = ".".join(user_request.split())
-        self.url = GoogleMapRequest.URL_BASE + self.question + "&key=" + GMAP_KEY
+        self.url = GoogleMapRequest.URL_BASE + \
+                   self.question + "&key=" + GMAP_KEY
 
     def extract_address_and_coordinates(self):
         """
@@ -28,9 +29,7 @@ class GoogleMapRequest:
         api_data = self.get_data()
         try:
             return api_data
-        except IndexError:
-            return ""
-        except KeyError:
+        except IndexError or KeyError:
             return ""
 
     def get_data(self):
@@ -38,5 +37,4 @@ class GoogleMapRequest:
         Get data from Google Map API and return it in a JSON format
         """
         gmaps_data = requests.get(self.url)
-        print("data >", gmaps_data.json())
         return gmaps_data.json()

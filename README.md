@@ -2,7 +2,7 @@
 
 #### **Description**
 
-This is the 6th project which has been developed for Openclassrooms.
+This is the 7th project which has been developed for Openclassrooms.
 Ask GrandPy for a place, and it will give you the location with the
 postal address and the corresponding map.
 Then, he will start to talk about facts on this place.

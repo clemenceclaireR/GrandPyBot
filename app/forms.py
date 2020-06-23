@@ -2,23 +2,16 @@
 # coding: utf-8
 
 
-"""
-Robby the GrandPy Bot,
-7th project of OC Python Developer Path.
-Author: Loïc Mangin
-"""
-
-
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 
 
 class DialogForm(FlaskForm):
-    """Minimalist form used in /index page
     """
-    user_request = StringField(
-        "Dis-moi GrandPy, ...", validators=[DataRequired()]
-        )
-    submit = SubmitField("Dire")
-
+    Form which will be use in the template for the chat,
+    data will be then parsed by python scripts and
+    sent to ajax
+    """
+    user_request = StringField(validators=[DataRequired()])
+    submit = SubmitField("Envoyer")
