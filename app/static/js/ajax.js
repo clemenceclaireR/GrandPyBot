@@ -11,6 +11,7 @@ $(document).on('keydown', function(event)
 // Handles user submission when "RETURN" is pressed
 {
     var userQuery = document.getElementById('user_query').value;
+    //var userQuery = $('user_query').value;
     var key = event.keyCode;
     if (key === 13 && userQuery !== "") {
         userQueryTreatment(userQuery);
@@ -25,6 +26,15 @@ function userQueryTreatment(userQuery)
     var userZone = document.getElementById("user_query");
     userZone.value = "";
     // call functions to POST request and its response
+    // jQuery.post( url [, data ] [, success ] [, dataType ] )
+    // equivalent to :
+    // $.ajax({
+    //   type: "POST",
+    //   url: url,
+    //   data: data,
+    //   success: success,
+    //   dataType: dataType
+    // });
     ajaxPostRequest('/ajax', userQuery, botResponseTreatment);
 }
 
@@ -92,7 +102,7 @@ function botResponseTreatment(response_data)
         }
         // if nothing found, then display corresponding answer
     } else {
-        displayBotEntry( getRandomAnswer(notFoundAnswer), "")
+        displayBotEntry(getRandomAnswer(notFoundAnswer), "")
     }
 }
 
