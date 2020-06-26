@@ -25,16 +25,7 @@ function userQueryTreatment(userQuery)
     displayUserEntry(userQuery);
     var userZone = document.getElementById("user_query");
     userZone.value = "";
-    // call functions to POST request and its response
-    // jQuery.post( url [, data ] [, success ] [, dataType ] )
-    // equivalent to :
-    // $.ajax({
-    //   type: "POST",
-    //   url: url,
-    //   data: data,
-    //   success: success,
-    //   dataType: dataType
-    // });
+    // call functions to POST request and return its response
     ajaxPostRequest('/ajax', userQuery, botResponseTreatment);
 }
 

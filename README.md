@@ -43,7 +43,9 @@ program running. You have to activate Geocoding API and Maps Javascript API.
 
 **Depencies**
 - Install the dependencies with _pip install requirements.txt_
-- Insert your API key in the corresponding place
+- Insert your API key in your OS or _.env_ file like so = _GMAPS_API_KEY="your_api_key"_
+- If you insert it into your _.env_ file, _python-dotenv_ library
+ will read it automatically
 
 **Launching**
 - Run _flask run_ in your terminal
@@ -58,6 +60,13 @@ In order to run the tests, do like so :
 - Run _pytest_ (Pytest has to be installed)
 
 If the test is validated, it will be green.
+
+/!\ Beware though ! /!\ 
+ 
+Your API key has to be read by Pytest, so if you have it
+in your _.env_ file, have _pytest-dotenv_ library 
+(not the same as _python-dotenv_) installed. Its included in 
+the _requirements.txt_ file.
 
 You can test the coverage of the tests like so :
 _pytest --cov=app --cov-report html_ 

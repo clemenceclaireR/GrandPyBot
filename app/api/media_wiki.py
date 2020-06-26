@@ -75,7 +75,6 @@ class WikiRequest:
         url_extract = WikiRequest.API_PAGEID_LINK.format(WikiRequest.PAGE_ID)
         wiki_data = requests.get(url_extract)
         wiki_data = wiki_data.json()
-        print(wiki_data)
         try:
             return wiki_data['query']['pages'][str(WikiRequest.PAGE_ID)]['extract']
         except IndexError or KeyError:

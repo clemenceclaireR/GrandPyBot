@@ -1,6 +1,7 @@
 # test and env
 venv
 htmlcov
+--cov-report
 .coverage
 .idea
 .env

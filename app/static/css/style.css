@@ -2,6 +2,15 @@ body {
     padding: 1em;
 }
 
+/*
+.container {
+  padding-right: 1em;
+  padding-left: 1em;
+  margin-right: auto;
+  margin-left: auto;
+}
+*/
+
 /* Header */
 
 #logo {
@@ -32,16 +41,12 @@ body {
     word-spacing: 0.3em;
 }
 
+#crossed-out
+{
+    text-decoration: line-through;
+}
 
 /* Chat window and its components */
-
-#chatwindow, #ajax-loader, .user, .map, .grandpybot, #chatform, input {
-    border-radius: 0.1em;
-}
-
-#chatwindow, .map {
-    border: solid 1px black;
-}
 
 #chatwindow {
     background-color: #a1d9c5;
@@ -53,9 +58,62 @@ body {
     border-radius: 0.5em;
 }
 
+#chatform {
+    margin: 2em 0 2em 0;
+    font-size: 1.3em;
+}
+
+#submit {
+    /* got on https://charliepark.org/bootstrap_buttons */
+  background-color: hsl(166, 69%, 22%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#21b492", endColorstr="#115e4c");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#21b492), to(#115e4c));
+  background-image: -moz-linear-gradient(top, #21b492, #115e4c);
+  background-image: -ms-linear-gradient(top, #21b492, #115e4c);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #21b492), color-stop(100%, #115e4c));
+  background-image: -webkit-linear-gradient(top, #21b492, #115e4c);
+  background-image: -o-linear-gradient(top, #21b492, #115e4c);
+  background-image: linear-gradient(#21b492, #115e4c);
+  border-color: #115e4c #115e4c hsl(166, 69%, 17%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+  -webkit-font-smoothing: antialiased;
+}
+
+#chatwindow, .map {
+    border: solid 1px black;
+}
+
+.map {
+    width: 75%;
+    height: 10em;
+    margin: 0.7em;
+    border-radius: 0.2em;
+}
+
+#chatwindow, #chatform, .map, input, .user, .grandpybot, #ajax-loader {
+    border-radius: 0.1em;
+}
+
+
 #ajax-loader {
     width: 100%;
     margin: 1px;
+}
+
+.grandpybot_title {
+    padding: 0.5em;
+    font-weight: bold;
+    color: #00003d;
+}
+
+.user_title {
+    padding: 0.5em;
+    font-weight: bold;
+    text-align: right;
+    position: relative;
+    color: #520b52;
 }
 
 .user, .grandpybot {
@@ -69,12 +127,6 @@ body {
     text-align: right;
 }
 
-.map {
-    width: 75%;
-    height: 10em;
-    margin: 0.7em;
-    border-radius: 0.2em;
-}
 
 .grandpybot {
     opacity: 1;
@@ -96,63 +148,12 @@ input, .grandpybot {
     color: #00003d;
 }
 
-.grandpybot_title {
-    padding: 0.5em;
-    font-weight: bold;
-    color: #00003d;
-}
-
-.user_title {
-    padding: 0.5em;
-    font-weight: bold;
-    text-align: right;
-    position: relative;
-    color: #520b52;
-}
-
-#chatform {
-    margin: 2em 0 2em 0;
-    font-size: 1.3em;
-}
-
-
-#submit {
-    /* got on https://charliepark.org/bootstrap_buttons */
-  background-color: hsl(166, 69%, 22%) !important;
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#21b492", endColorstr="#115e4c");
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#21b492), to(#115e4c));
-  background-image: -moz-linear-gradient(top, #21b492, #115e4c);
-  background-image: -ms-linear-gradient(top, #21b492, #115e4c);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #21b492), color-stop(100%, #115e4c));
-  background-image: -webkit-linear-gradient(top, #21b492, #115e4c);
-  background-image: -o-linear-gradient(top, #21b492, #115e4c);
-  background-image: linear-gradient(#21b492, #115e4c);
-  border-color: #115e4c #115e4c hsl(166, 69%, 17%);
-  color: #fff !important;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
-  -webkit-font-smoothing: antialiased;
-}
 
 /* Footer and its component */
-footer {
-}
+
 
 #button_info {
     margin-top: 1em
-}
-
-.container {
-  padding-right: 1em;
-  padding-left: 1em;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-
-#crossed-out
-{
-    text-decoration: line-through;
 }
 
 
