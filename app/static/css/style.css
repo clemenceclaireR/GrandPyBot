@@ -92,7 +92,7 @@ body {
     border-radius: 0.2em;
 }
 
-#chatwindow, #chatform, .map, input, .user, .grandpybot, #ajax-loader {
+#chatform, .map, input, .user, .grandpybot, #ajax-loader {
     border-radius: 0.1em;
 }
 
