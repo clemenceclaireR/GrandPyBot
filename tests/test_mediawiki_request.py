@@ -33,7 +33,7 @@ class TestMockWikiRequest:
             url_extract = "https://fr.wikipedia.org/w/api.php?action=query&pageids=1187468" \
                           "&prop=extracts&explaintext=true&exsectionformat=plain&exsentences=3&format=json"
             page_id_result = '{"query": {"geosearch": [{"pageid": 1187468}]}}'
-            mocker.get(mt_st_michel.url_page_id, text=page_id_result)
+            mocker.get(mt_st_michel.url_geoloc, text=page_id_result)
             mocker.get(url_extract, text=result)
             assert mt_st_michel.get_extract() == "Le Mont-Saint-Michel est une commune française située " \
                                                  "dans le département de la Manche en Normandie. Elle tire " \
@@ -54,7 +54,7 @@ class TestMockWikiRequest:
             mt_st_michel = WikiRequest(48.636063, -1.511457)
             result = '{"query": {"geosearch": [{"title": ' \
                      '"Le Mont-Saint-Michel"}]}}'
-            mocker.get(mt_st_michel.url_page_id, text=result)
+            mocker.get(mt_st_michel.url_geoloc, text=result)
             assert mt_st_michel.get_page_title() == "Le Mont-Saint-Michel"
 
     def test_get_url(self):
@@ -79,7 +79,7 @@ class TestMockWikiRequest:
         with requests_mock.Mocker() as mocker:
             mt_st_michel = WikiRequest(48.636063, -1.511457)
             result = '{"query": {"geosearch": [{"pageid": 1187468}]}}'
-            mocker.get(mt_st_michel.url_page_id, text=result)
+            mocker.get(mt_st_michel.url_geoloc, text=result)
             assert mt_st_michel.get_page_id() == 1187468
 
 

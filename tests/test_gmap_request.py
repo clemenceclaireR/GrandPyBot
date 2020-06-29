@@ -27,7 +27,7 @@ class TestMockGmap:
                      '75010 Paris, France","geometry": {"location": ' \
                      '{"lat": 48.8748465, "lng": 2.3504873}}}]}'
             mocker.get(oc_address.url, text=result)
-            results = oc_address.extract_address_and_coordinates()
+            results = oc_address.get_data()
             coords = results['results'][0]['geometry']['location']
             address = results['results'][0]['formatted_address']
             assert coords == {'lat': 48.8748465, 'lng': 2.3504873}
@@ -42,13 +42,15 @@ class TestGMapsRequest:
     def setup(self):
         self.openclassrooms = GoogleMapRequest("openclassrooms paris")
 
-    def test_get_coord(self):
-        results = self.openclassrooms.extract_address_and_coordinates()
+    def test_get_address_and_coord(self):
+        """
+        Call get_data() function to extract needed informations
+        """
+        results = self.openclassrooms.get_data()
         coords = results['results'][0]['geometry']['location']
-        assert coords == {'lat': 48.8748465, 'lng': 2.3504873}
-
-    def test_get_address(self):
-        results = self.openclassrooms.extract_address_and_coordinates()
         address = results['results'][0]['formatted_address']
+        assert coords == {'lat': 48.8748465, 'lng': 2.3504873}
         assert address == '7 Cité Paradis, 75010 Paris, France'
+
+
 

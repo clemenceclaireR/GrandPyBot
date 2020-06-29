@@ -15,6 +15,10 @@ class WikiRequest:
     API_GEOLOC_LINK = "https://fr.wikipedia.org/w/api.php?action=query&prop=" \
                       "extracts&list=geosearch&gscoord={}|{}&gsradius=" \
                       "10000&gslimit=1&format=json"
+    API_PAGETITILE_LINK = "http://fr.wikipedia.org/w/api.php?action=" \
+                          "query&prop=extracts|info&exsentences=3&" \
+                          "inprop=url&explaintext=&titles={}&format" \
+                          "=json&formatversion=2"
     PAGE_ID = ""
 
     def __init__(self, *args):
@@ -24,7 +28,7 @@ class WikiRequest:
         try:
             self.latitude = args[0]
             self.longitude = args[1]
-            self.url_page_id = WikiRequest.API_GEOLOC_LINK.\
+            self.url_geoloc = WikiRequest.API_GEOLOC_LINK. \
                 format(self.latitude, self.longitude)
         except:
             pass
@@ -34,32 +38,31 @@ class WikiRequest:
         Get page title in order to use it to
         retrieve wiki url
         """
-        wiki_data = requests.get(self.url_page_id)
+        wiki_data = requests.get(self.url_geoloc)
         wiki_data = wiki_data.json()
         try:
             title = wiki_data["query"]["geosearch"][0]["title"]
             return title
-        except:
+        except IndexError or KeyError:
             return ""
 
     def get_page_full_url(self, title):
         """
         Retrieve wikipedia url in order to give it with the extract
         """
-        wiki_data = requests.get('http://fr.wikipedia.org/w/api.php?action='
-                                 'query&prop=extracts|info&exsentences=3&'
-                                 'inprop=url&explaintext=&titles={}&format'
-                                 '=json&formatversion=2'.format(title))
-        wiki_data = wiki_data.json()
-        url = wiki_data["query"]["pages"][0]["fullurl"]
-
-        return url
+        try:
+            wiki_data = requests.get(WikiRequest.API_PAGETITILE_LINK.format(title))
+            wiki_data = wiki_data.json()
+            url = wiki_data["query"]["pages"][0]["fullurl"]
+            return url
+        except IndexError or KeyError:
+            return ""
 
     def get_page_id(self):
         """
         Get wikipedia page id based on coordinates
         """
-        wiki_data = requests.get(self.url_page_id)
+        wiki_data = requests.get(self.url_geoloc)
         wiki_data = wiki_data.json()
         try:
             return wiki_data['query']['geosearch'][0]['pageid']

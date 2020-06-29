@@ -43,7 +43,7 @@ def ajax_request():
 
     # give the query to Google Maps API and store response
     gmaps_request = GoogleMapRequest(cleaned_query)
-    results = gmaps_request.extract_address_and_coordinates()
+    results = gmaps_request.get_data()
 
     # if there is a status, store the coordinates and address
     if check_if_status(results):
