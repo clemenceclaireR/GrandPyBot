@@ -25,13 +25,10 @@ class WikiRequest:
         """
         Takes coordinates to build the url to request
         """
-        try:
-            self.latitude = args[0]
-            self.longitude = args[1]
-            self.url_geoloc = WikiRequest.API_GEOLOC_LINK. \
+        self.latitude = args[0]
+        self.longitude = args[1]
+        self.url_geoloc = WikiRequest.API_GEOLOC_LINK. \
                 format(self.latitude, self.longitude)
-        except:
-            pass
 
     def get_page_title(self):
         """
