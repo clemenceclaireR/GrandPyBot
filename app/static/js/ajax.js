@@ -62,7 +62,7 @@ function botResponseTreatment(response_data)
 {
     // set GrandPy answers according to the situation
     var validAnswer = ["Bien-sûr mon poussin ! La voici : ",
-                      "C'est là que j'ai connu ta grand-mère, figure-toi ! C'est à cette adresse : ",
+                      "C'est là que j'ai rencontré ma base de donnée adorée, figure-toi ! C'est à cette adresse : ",
                       "Tiens, j'en ai justement entendu parler dans le journal de midi ! C'est à cet endroit : "]
     var notFoundAnswer = ["Désolé, parfois je perds un peu le fil.",
                         "Hein ? J'ai les circuits auditifs oxydés ...",
